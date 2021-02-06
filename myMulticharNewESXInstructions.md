@@ -1,6 +1,6 @@
 # faq
 
-## Installation instructions for myMultichar in version 1.2:
+## Installation instructions for myMultichar:
 
 ### 1. Put myMultichar in your ressources folder
 ### 2. Download this NativeUI version and also put it in your ressources folder (Only the NativeUI, not the MenuExample)
