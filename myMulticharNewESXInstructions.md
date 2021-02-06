@@ -212,25 +212,47 @@ end)
 ```lua
 ESX.RegisterServerCallback('esx_skin:getPlayerSkin', function(source, cb)
     local xPlayer = ESX.GetPlayerFromId(source)
-    local steamID = GetPlayerIdentifiers(source)[1]
-    --local steamID = string.gsub(GetPlayerIdentifiers(source)[2], "license:", "") -- if you use ESX 1.2 or higher, enable this
+    if not xPlayer then
+    	local steamID = GetPlayerIdentifiers(source)[1]
+        -- local steamID = string.gsub(GetPlayerIdentifiers(source)[2], "license:", "") -- If you use ESX 1.2 or higher enable this
+    end
 
-    MySQL.Async.fetchAll('SELECT skin FROM users WHERE identifier = @identifier', {
-        ['@identifier'] = steamID
-    }, function(users)
-        local user, skin = users[1]
+    if not xPlayer then
+        MySQL.Async.fetchAll('SELECT skin FROM users WHERE identifier = @identifier', {
+            ['@identifier'] = steamID
+        }, function(users)
+            local user, skin = users[1]
+    
+            local jobSkin = {
+                --skin_male   = xPlayer.job.skin_male,
+                --skin_female = xPlayer.job.skin_female
+            }
+    
+            if user.skin then
+                skin = json.decode(user.skin)
+            end
+            
+            cb(skin, jobSkin)
+        end)
+    else
+        MySQL.Async.fetchAll('SELECT skin FROM users WHERE identifier = @identifier', {
+            ['@identifier'] = xPlayer.identifier
+        }, function(users)
+            local user, skin = users[1]
+    
+            local jobSkin = {
+                skin_male   = xPlayer.job.skin_male,
+                skin_female = xPlayer.job.skin_female
+            }
+    
+            if user.skin then
+                skin = json.decode(user.skin)
+            end
+            
+            cb(skin, jobSkin)
+        end)
+    end
 
-        local jobSkin = {
-            --skin_male   = xPlayer.job.skin_male,
-            --skin_female = xPlayer.job.skin_female
-        }
-
-        if user.skin then
-            skin = json.decode(user.skin)
-        end
-        
-        cb(skin, jobSkin)
-    end)
 end)
 ```
 ### 7. Be sure your identifier/owner columns in your database are at least a varchar(60). You have to do this for every table, where an identifier is saved. If the column is already a varchar(60) or higher, than you can skip this step for this column
