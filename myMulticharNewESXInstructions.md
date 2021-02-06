@@ -6,8 +6,8 @@
 ### 2. Download this NativeUI version and also put it in your ressources folder (Only the NativeUI, not the MenuExample)
 ### Right NativeUI version: https://github.com/FrazzIe/NativeUILua
 ### 3. Import the .sql file into your database
-### For myMulticharNewESX (ESX versions 1.2 and higher)
-### 4. Go to es_extended/client/main.lua and do the following changes:
+### 4.1 For myMulticharNewESX (ESX versions 1.2 and higher)
+#### Go to es_extended/client/main.lua and do the following changes:
 
 #### Replace:
 ```lua
@@ -94,8 +94,8 @@ end)
     DoScreenFadeIn(0)
     StartServerSyncLoops()
 ```
-### For myMultichar (ESX versions 1.1 and lower)
-### 4. Go to essentialmode / client / main.lua
+### 4.2 For myMultichar (ESX versions 1.1 and lower)
+#### Go to essentialmode / client / main.lua
 #### Comment out the following part:
 ```lua
 Citizen.CreateThread(function()
