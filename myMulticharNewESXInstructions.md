@@ -118,65 +118,30 @@ TriggerServerEvent('es:firstJoinProper')
 ```lua
 	TriggerEvent('skinchanger:loadSkin', {sex = 0}, OpenSaveableMenu)
 ```
-### 6. To avoid that the players skin doesn't load do the changes below:
-#### Go to esx_skin/client/main.lua and find the following part (usually lines 260-270)
+#### So it should looks like this:
 ```lua
-AddEventHandler('playerSpawned', function()
-
-  Citizen.CreateThread(function()
-
-    while not PlayerLoaded do
-      Citizen.Wait(0)
-    end
-
-    if FirstSpawn then
-
-      ESX.TriggerServerCallback('esx_skin:getPlayerSkin', function(skin, jobSkin)
-
-        if skin == nil then
-          --TriggerEvent('skinchanger:loadSkin', {sex = 0}, OpenSaveableMenu)
-        else
-          TriggerEvent('skinchanger:loadSkin', skin)
+AddEventHandler('esx:onPlayerSpawn', function()
+    Citizen.CreateThread(function()
+        while not playerLoaded do
+            Citizen.Wait(100)
         end
 
-      end)
+        if firstSpawn then
+            ESX.TriggerServerCallback('esx_skin:getPlayerSkin', function(skin, jobSkin)
+                if skin == nil then
+                    --TriggerEvent('skinchanger:loadSkin', {sex = 0}, OpenSaveableMenu)
+                else
+                    TriggerEvent('skinchanger:loadSkin', skin)
+                end
+            end)
 
-      FirstSpawn = false
-
-    end
-
-  end)
-
-end)
-```
-#### And replace it with 
-```lua
-RegisterNetEvent('myMultichar:SpawnCharacter')
-AddEventHandler('myMultichar:SpawnCharacter', function(spawn, isnew)
-
-  Citizen.CreateThread(function()
-
-    Citizen.Wait(10000)
-    
-    --if FirstSpawn then
-      ESX.TriggerServerCallback('esx_skin:getPlayerSkin', function(skin, jobSkin)
-        if skin == nil then
-          --TriggerEvent('skinchanger:loadSkin', {sex = 0}, OpenSaveableMenu)
-        else
-          TriggerEvent('skinchanger:loadSkin', skin)
+            firstSpawn = false
         end
-
-      end)
-
-      FirstSpawn = false
-
-    --end
-
-  end)
-
+    end)
 end)
 ```
-#### AND replace the following part  esx_skin/server/main.lua (about lines 31-59)
+### 6. To avoid that the players skin doesn't load:
+#### Replace the following part  esx_skin/server/main.lua (about lines 31-59)
 ```lua
 ESX.RegisterServerCallback('esx_skin:getPlayerSkin', function(source, cb)
 
@@ -212,12 +177,13 @@ end)
 ```lua
 ESX.RegisterServerCallback('esx_skin:getPlayerSkin', function(source, cb)
     local xPlayer = ESX.GetPlayerFromId(source)
-    if not xPlayer then
-    	local steamID = GetPlayerIdentifiers(source)[1]
-        -- local steamID = string.gsub(GetPlayerIdentifiers(source)[2], "license:", "") -- If you use ESX 1.2 or higher enable this
-    end
-
-    if not xPlayer then
+    --local steamID = GetPlayerIdentifiers(source)[1] -- If you use ESX 1.1 or lower enable this and disable the line below
+    local steamID = string.gsub(GetPlayerIdentifiers(source)[2], "license:", "") -- If you use ESX 1.2 or higher enable this
+    
+	print(xPlayer)
+    if xPlayer == nil then
+		print('xPlayer is nil')
+		print('Select where identifier = ' .. steamID)
         MySQL.Async.fetchAll('SELECT skin FROM users WHERE identifier = @identifier', {
             ['@identifier'] = steamID
         }, function(users)
@@ -235,6 +201,7 @@ ESX.RegisterServerCallback('esx_skin:getPlayerSkin', function(source, cb)
             cb(skin, jobSkin)
         end)
     else
+		print('xPlayer not nil')
         MySQL.Async.fetchAll('SELECT skin FROM users WHERE identifier = @identifier', {
             ['@identifier'] = xPlayer.identifier
         }, function(users)
