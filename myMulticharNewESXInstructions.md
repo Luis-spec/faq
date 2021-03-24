@@ -222,7 +222,7 @@ ESX.RegisterServerCallback('esx_skin:getPlayerSkin', function(source, cb)
 
 end)
 ```
-### 7. Be sure your identifier/owner columns in your database are at least a varchar(60). You have to do this for every table, where an identifier is saved. If the column is already a varchar(60) or higher, than you can skip this step for this column
+### 7. Only for myMulticharNewESX: Be sure your identifier/owner columns in your database are at least a varchar(60). You have to do this for every table, where an identifier is saved. If the column is already a varchar(60) or higher, than you can skip this step for this column
 ### Tutorial: https://youtu.be/USbWHihndg0
 
 ### 8. Set up your Config.Tables. All tables from your database, where identifiers are saved (also when the column name is owner, license...) have to be inserted there.
