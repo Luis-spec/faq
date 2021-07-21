@@ -36,3 +36,7 @@ set mysql_connection_string "server=127.0.0.1;database=myTemplateServer;userid=r
 
 #### You can also set up the controls for the VoiceChat and VoiceRanges in this file.
 
+
+# Set up the Loading Screen
+##### Go to ...\resources\[addon]\loqscript-material_load-loadingscreen\LoadingScreen\config.json
+##### There you can set up every line from the LoadingScreen
