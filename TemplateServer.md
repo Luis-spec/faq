@@ -1,6 +1,15 @@
 # Installation instructions for your Template Server
 
-### Set up the database stuff
+## Import the Template Server
+#### First of all you need any kind of default server structure: How to create such an empty server is explained here: https://docs.fivem.net/docs/server-manual/setting-up-a-server/
+#### Then you can  paste the "ressources" folder from the downloaded files into your \server-data\
+#### This should also replace the old files.
+#### Then you have to replace your server.cfg with the one, which is provided in the downloaded files.
+
+### That's it! Now you can follow the steps below.
+
+
+## Set up the database stuff
 
 ##### 1. Import the myTemplateServer.sql file to a new database
 ##### 2. Go to the server.cfg and set up your mySQL connection string:
@@ -9,7 +18,7 @@ set mysql_connection_string "server=127.0.0.1;database=myTemplateServer;userid=r
 ```
 #### In this case your server would access a localhost database with the name being "myTemplateServer". Using the account "root" with no password.
 
-### Set up SaltyChat
+## Set up SaltyChat
 ##### 1. Go to ...\resources\[SaltyChat]\saltychat\config.json and find this part:
 ```
   "ServerUniqueIdentifier": "xbOnKkxz1jhPbTHW...",
