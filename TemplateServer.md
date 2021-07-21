@@ -17,6 +17,7 @@ set mysql_connection_string "server=127.0.0.1;database=myTemplateServer;userid=r
 ```
 #### In this case your server would access a localhost database with the name being "myTemplateServer". Using the account "root" with no password.
 
+
 # Set up SaltyChat
 ##### 1. Go to ...\resources\[SaltyChat]\saltychat\config.json and find this part:
 ```
