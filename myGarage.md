@@ -1,4 +1,4 @@
-### **Society Vehicles and Garages:**
+## **Society Vehicles and Garages:**
 By default the column "isSocietyVehicle" in the owned_vehices table (database) is set to nil ("null").
 If this column in nil, the vehicle can be stored in every garage.
 If this column is set to 1 and ```Config.societyVehiclesOnlyInJobGarages = true```, this vehicle can only be stored in society/job garages.
@@ -39,7 +39,9 @@ ESX.RegisterServerCallback('esx_policejob:buyJobVehicle', function(source, cb, v
 end)
 ```
 
-### **Vehicle Deformation:**
+
+
+## **Vehicle Deformation:**
 Only used when ```Config.useVehicleDeformation = true``` is enabled. When you use AdvancedParking, this is automatically enabled.
 You don't need another script for this.
 **Important!** You have to trigger an export, when fixing a car:
@@ -47,7 +49,9 @@ You don't need another script for this.
 exports["myGarage"]:FixVehicleDeformation(vehicle)
 ```
 
-### **How to add new garages?**
+
+
+## **How to add new garages?**
 #### Public garages: 
 To make the installation of new public and job garages aas easy as possible we added a garage creator assistant. 
 This can be opened with /garageAssist (Only when ```Config.InstallationMode``` is enabled)
