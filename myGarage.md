@@ -1,4 +1,4 @@
-#### **Society Vehicles and Garages:**
+### **Society Vehicles and Garages:**
 By default the column "isSocietyVehicle" in the owned_vehices table (database) is set to nil ("null").
 If this column in nil, the vehicle can be stored in every garage.
 If this column is set to 1 and ```Config.societyVehiclesOnlyInJobGarages = true```, this vehicle can only be stored in society/job garages.
