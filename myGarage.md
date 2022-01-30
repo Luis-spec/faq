@@ -7,8 +7,8 @@ To set this state, you can add this event to your **server-side**, where a socie
 ```lua
 TriggerEvent('myGarage:setVehicleAsSocietyOwned', plate)
 ```
-Example implementation in the esx_policejob/server/main.lua
-```
+**Example implementation** in the esx_policejob/server/main.lua
+```lua
 ESX.RegisterServerCallback('esx_policejob:buyJobVehicle', function(source, cb, vehicleProps, type)
 	local xPlayer = ESX.GetPlayerFromId(source)
 	local price = getPriceFromHash(vehicleProps.model, xPlayer.job.grade_name, type)
@@ -29,11 +29,7 @@ ESX.RegisterServerCallback('esx_policejob:buyJobVehicle', function(source, cb, v
 				['@job'] = xPlayer.job.name,
 				['@stored'] = true
 			}, function (rowsChanged)
-      ```
-      ```lua
 				TriggerEvent('myGarage:setVehicleAsSocietyOwned', vehicleProps.plate)
-       ```
-       ```
 				cb(true)
 			end)
 		else
