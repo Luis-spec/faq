@@ -7,3 +7,38 @@ To set this state, you can add this event to your **server-side**, where a socie
 ```lua
 TriggerEvent('myGarage:setVehicleAsSocietyOwned', plate)
 ```
+Example implementation in the esx_policejob/server/main.lua
+```
+ESX.RegisterServerCallback('esx_policejob:buyJobVehicle', function(source, cb, vehicleProps, type)
+	local xPlayer = ESX.GetPlayerFromId(source)
+	local price = getPriceFromHash(vehicleProps.model, xPlayer.job.grade_name, type)
+
+	-- vehicle model not found
+	if price == 0 then
+		print(('esx_policejob: %s attempted to exploit the shop! (invalid vehicle model)'):format(xPlayer.identifier))
+		cb(false)
+	else
+		if xPlayer.getMoney() >= price then
+			xPlayer.removeMoney(price)
+
+			MySQL.Async.execute('INSERT INTO owned_vehicles (owner, vehicle, plate, type, job, `stored`) VALUES (@owner, @vehicle, @plate, @type, @job, @stored)', {
+				['@owner'] = xPlayer.identifier,
+				['@vehicle'] = json.encode(vehicleProps),
+				['@plate'] = vehicleProps.plate,
+				['@type'] = type,
+				['@job'] = xPlayer.job.name,
+				['@stored'] = true
+			}, function (rowsChanged)
+      ```
+      ```lua
+				TriggerEvent('myGarage:setVehicleAsSocietyOwned', vehicleProps.plate)
+       ```
+       ```
+				cb(true)
+			end)
+		else
+			cb(false)
+		end
+	end
+end)
+```
