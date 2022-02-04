@@ -42,6 +42,7 @@ end)
 
 
 ## **Vehicle Deformation:**
+Not required! Only when using AdvancedParking!
 Only used when ```Config.useVehicleDeformation = true``` is enabled. When you use AdvancedParking, this is automatically enabled.
 You don't need another script for this.
 **Important!** You have to trigger an export, when fixing a car:
