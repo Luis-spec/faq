@@ -1,6 +1,6 @@
-Installation instructions for your Template Server
+# Installation instructions for your Template Server
 
-# Import the Template Server
+Import the Template Server
 #### First of all you need any kind of default server structure: How to create such an empty server is explained here: https://docs.fivem.net/docs/server-manual/setting-up-a-server/
 #### Then you can  paste the "ressources" folder from the downloaded files into your \server-data\ -> This should also replace the old files.
 #### Then you have to replace your server.cfg with the one, which is provided in the downloaded files.
