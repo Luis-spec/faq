@@ -1,20 +1,21 @@
-#### How to remove the auto-rescaling from NativeUILua_Reloaded?
-Go to the script you want to edit. For this example I'll use myGarage.
+### How to remove the auto-rescaling from NativeUILua_Reloaded?
+#### Go to the script you want to edit. For this example I'll use myGarage.
 
-1.) Download this NativeUILua: https://workupload.com/file/gNMgrvY9VWV 
-    and paste it into the script directory.
+###1.) Download this NativeUILua: https://workupload.com/file/gNMgrvY9VWV 
+###    and paste it into the script directory.
 
-Example:
+#### Example:
+
 ![image](https://user-images.githubusercontent.com/55956668/168324028-98e3fd3b-0759-47a8-98c2-4b5487576450.png)
 
-2.) Open the fxmanifest and remove the following line:
+### 2.) Open the fxmanifest and remove the following line:
 ```
 '@NativeUILua_Reloaded/src/NativeUIReloaded.lua',
 ```
 ![image](https://user-images.githubusercontent.com/55956668/168324529-2b1684f3-7707-482d-8db1-84b921f259a5.png)
 
 
-3.) Then add the following lines:
+### 3.) Then add the following lines:
 ```
 client_scripts {
     "NativeUILua/Wrapper/Utility.lua",
