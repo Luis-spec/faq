@@ -1,8 +1,8 @@
 ### How to remove the auto-rescaling from NativeUILua_Reloaded?
 #### Go to the script you want to edit. For this example I'll use myGarage.
 
-###1.) Download this NativeUILua: https://workupload.com/file/gNMgrvY9VWV 
-###    and paste it into the script directory.
+### 1.) Download this NativeUILua: https://workupload.com/file/gNMgrvY9VWV 
+###     and paste it into the script directory.
 
 #### Example:
 
