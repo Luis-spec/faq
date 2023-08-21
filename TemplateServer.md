@@ -7,6 +7,12 @@
 
 ### That's it! Now you can follow the steps below.
 
+# Set up your license keys
+##### Insert your server license key, which can be found here https://keymaster.fivem.net/
+```
+sv_licenseKey "YOURKEYHERE"
+```
+
 
 # Set up the database stuff
 
